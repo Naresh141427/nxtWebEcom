@@ -1,6 +1,6 @@
 
-import PrimeDealsComponent from '../PrimDeals/primeDeals-component';
-import ProductsList from '../ProductsList/productsList-component';
+import PrimeDealSection from '../Primedeals/primeDeals-component.jsx';
+import ProductsList from '../ProductsList/productsList-component.jsx';
 import { Container } from './products-styles';
 
 
@@ -11,7 +11,7 @@ const Products = () => {
 
     return (
         <Container>
-            <PrimeDealsComponent />
+            <PrimeDealSection />
             <ProductsList />
         </Container>
     )
