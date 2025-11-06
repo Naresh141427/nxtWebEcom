@@ -17,7 +17,7 @@ export const ProductContainer = styled.li`
         margin-bottom: 1.5rem;
     }
     @media(min-width: ${DesktopBreakpoints.large}){
-        width: 30%;
+        width: 40%;
     }
 
     

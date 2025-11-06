@@ -14,15 +14,8 @@ export const ProductsContainer = styled.div`
   @media(min-width: ${MobilebreakPoints.large}){
     flex-direction: row;
     justify-content: flex-start;
-    gap:  2.5rem; 
-  
+    gap:  7rem; 
   }
-   @media(min-width:${DesktopBreakpoints.medium}){
-    gap: 2rem;
-   }
-   @media(min-width:${DesktopBreakpoints.large}){
-    gap: 4rem;
-   }
   
   
 `

@@ -11,7 +11,7 @@ export const ProductHeaderContainer = styled.div`
   }
   @media(min-width:${MobilebreakPoints.large}){
         margin-bottom: 0.5rem;
-        min-width: 29rem;
+        min-width: 30rem;
     }
   @media(min-width: ${DesktopBreakpoints.medium}){
     min-width: 32rem;
