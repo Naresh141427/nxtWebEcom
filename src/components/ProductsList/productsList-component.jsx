@@ -104,41 +104,34 @@ const ProductsList = () => {
 
     }
 
+
     const getProducts = () => {
 
         return (
-            <ProductsContainer>
-                <FilterProducts
-                    clearSearchParams={setSearchParams}
-                    handleSearchproducts={handleSearchproducts}
-                    handleCategoryId={handleCategoryId}
-                    handleRatingChange={handleRatingChange}
-                    currentSearch={searchProducts}
-                    currentCategory={categoryId}
-                    currentRating={rating}
-                />
-                {productsList.length === 0 ? (<NoProducts />) : (
-                    <AllProductsContainer>
-                        <ProductHeader sortProducts={sortProducts} sortProductsOrder={sortProductsOrder} />
-                        <ProductsListContainer>
-                            {productsList.map(({ title, brand, image_url, price, rating, id }) => {
-                                return (
-                                    <ProductCard
-                                        key={id}
-                                        brand={brand}
-                                        imageUrl={image_url}
-                                        price={price}
-                                        rating={rating}
-                                        title={title}
-                                    />
-                                )
-                            })}
-                        </ProductsListContainer>
-                    </AllProductsContainer>
-                )
+            <>
+                {
+                    productsList.length === 0 ? (<NoProducts />) : (
+                        <AllProductsContainer>
+                            <ProductHeader sortProducts={sortProducts} sortProductsOrder={sortProductsOrder} />
+                            <ProductsListContainer>
+                                {productsList.map(({ title, brand, image_url, price, rating, id }) => {
+                                    return (
+                                        <ProductCard
+                                            key={id}
+                                            brand={brand}
+                                            imageUrl={image_url}
+                                            price={price}
+                                            rating={rating}
+                                            title={title}
+                                        />
+                                    )
+                                })}
+                            </ProductsListContainer>
+                        </AllProductsContainer>
+                    )
                 }
 
-            </ProductsContainer >
+            </>
         )
     }
 
@@ -153,18 +146,33 @@ const ProductsList = () => {
         )
 
     }
+    const renderProductsContent = () => {
+        switch (apiStatus) {
+            case apiStatusConstants.inProgress:
+                return showLoader();
+            case apiStatusConstants.success:
+                return getProducts();
+            case apiStatusConstants.failure:
+                return <ProductsFaiulre erroeMessage={erroeMessage} />;
+            default:
+                return null;
 
-    switch (apiStatus) {
-        case apiStatusConstants.inProgress:
-            return showLoader();
-        case apiStatusConstants.success:
-            return getProducts();
-        case apiStatusConstants.failure:
-            return <ProductsFaiulre erroeMessage={erroeMessage} />;
-        default:
-            return null;
-
+        }
     }
+    return (
+        <ProductsContainer>
+            <FilterProducts
+                clearSearchParams={setSearchParams}
+                handleSearchproducts={handleSearchproducts}
+                handleCategoryId={handleCategoryId}
+                handleRatingChange={handleRatingChange}
+                currentSearch={searchProducts}
+                currentCategory={categoryId}
+                currentRating={rating}
+            />
+            {renderProductsContent()}
+        </ProductsContainer>
+    )
 }
 
 export default ProductsList

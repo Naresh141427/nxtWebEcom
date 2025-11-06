@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import {
     SearchContainer,
     SearchInput,
@@ -6,9 +6,13 @@ import {
     SearchIconButton
 } from "./searchProducts-styles.js"
 
-const SearchProducts = ({ handleSearchproducts }) => {
+const SearchProducts = ({ handleSearchproducts, currentSearch }) => {
     const [searchProduct, setSearchedProduct] = useState("")
+    const inputRef = useRef()
 
+    useEffect(() => {
+        setSearchedProduct(currentSearch)
+    }, [currentSearch])
 
     const handleOnSearch = (e) => {
         const productName = e.target.value
@@ -17,6 +21,7 @@ const SearchProducts = ({ handleSearchproducts }) => {
     const handleForm = (e) => {
         e.preventDefault()
         handleSearchproducts(searchProduct)
+        if (inputRef.current) inputRef.current.blur()
     }
     return (
         <SearchContainer
@@ -26,6 +31,7 @@ const SearchProducts = ({ handleSearchproducts }) => {
                 type="search"
                 placeholder="Search"
                 value={searchProduct}
+                ref={inputRef}
                 onChange={handleOnSearch}
             />
             <SearchIconButton type="submit" >
