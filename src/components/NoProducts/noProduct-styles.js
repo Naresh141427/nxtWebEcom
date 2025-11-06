@@ -13,6 +13,9 @@ export const Container = styled.div`
         
     }
     @media(min-width: ${DesktopBreakpoints.medium}){
+        height: 50vw;
+    }
+    @media(min-width: ${DesktopBreakpoints.medium}){
         height: 35vw;
     }
 `
@@ -31,8 +34,8 @@ export const NoProductsImage = styled.img`
         height: 16rem
     }
     @media(min-width: ${DesktopBreakpoints.medium}){
-        width: 20rem;
-        height: 20rem
+        width: 18rem;
+        height: 18rem
     }
 `
 export const NoProductsHeading = styled.h2`

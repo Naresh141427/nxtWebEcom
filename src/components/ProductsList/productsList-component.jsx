@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import Cookies from 'js-cookie';
 
@@ -21,11 +22,17 @@ import { apiStatusConstants } from '../../APIConstansta/apiConstants.js';
 const ProductsList = () => {
     const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
     const [productsList, setProductsList] = useState([])
-    const [sortProductsOrder, setSortProductsOrder] = useState("")
-    const [searchProducts, setSearchProducts] = useState("")
-    const [categoryId, setCategoryId] = useState("")
-    const [rating, setRating] = useState("")
+    // const [sortProductsOrder, setSortProductsOrder] = useState("")
+    // const [searchProducts, setSearchProducts] = useState("")
+    // const [categoryId, setCategoryId] = useState("")
+    // const [rating, setRating] = useState("")
     const [erroeMessage, seterroEMessage] = useState("")
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const sortProductsOrder = searchParams.get('sort_by') || ''
+    const searchProducts = searchParams.get('title_search') || ''
+    const categoryId = searchParams.get('category') || ''
+    const rating = searchParams.get('rating') || ''
 
     useEffect(() => {
 
@@ -34,7 +41,9 @@ const ProductsList = () => {
             seterroEMessage("")
             try {
                 const jtwToken = Cookies.get("jwt_token")
-                const url = `https://apis.ccbp.in/products?sort_by=${sortProductsOrder}&category=${categoryId}&title_search=${searchProducts}&rating=${rating}`
+                // const url = `https://apis.ccbp.in/products?sort_by=${sortProductsOrder}&category=${categoryId}&title_search=${searchProducts}&rating=${rating}`
+                const queryString = searchParams.toString()
+                const url = `https://apis.ccbp.in/products?${queryString}`
                 const options = {
                     headers: {
                         Authorization: `Bearer ${jtwToken}`,
@@ -63,29 +72,36 @@ const ProductsList = () => {
         }
         fetchProducts()
 
-    }, [sortProductsOrder, searchProducts, categoryId, rating])
+    }, [searchParams])
 
     const sortProducts = (value) => {
-        setSortProductsOrder(value)
+        // setSortProductsOrder(value)
+        setSearchParams(prevParams => {
+            prevParams.set('sort_by', value)
+            return prevParams
+        })
     }
 
     const handleSearchproducts = (value) => {
-        setSearchProducts(value)
-        setCategoryId("")
-        setRating("")
-        setSortProductsOrder("")
+        // setSearchProducts(value)
+        // setCategoryId("")
+        // setRating("")
+        // setSortProductsOrder("")
+        setSearchParams({ title_search: value })
     }
     const handleCategoryId = (value) => {
-        setCategoryId(value)
-        setSearchProducts("")
-        setRating("")
-        setSortProductsOrder("")
+        // setCategoryId(value)
+        // setSearchProducts("")
+        // setRating("")
+        // setSortProductsOrder("")
+        setSearchParams({ category: value })
     }
     const handleRatingChange = (value) => {
-        setRating(value)
-        // setSearchProducts("")
-        // setCategoryId("")
-        // setSortProductsOrder("")
+        setSearchParams(prevParams => {
+            prevParams.set('rating', value)
+            return prevParams
+        })
+
     }
 
     const getProducts = () => {
@@ -93,6 +109,7 @@ const ProductsList = () => {
         return (
             <ProductsContainer>
                 <FilterProducts
+                    clearSearchParams={setSearchParams}
                     handleSearchproducts={handleSearchproducts}
                     handleCategoryId={handleCategoryId}
                     handleRatingChange={handleRatingChange}

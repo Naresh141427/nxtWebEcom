@@ -8,7 +8,6 @@ import Login from "./components/Login/login-component";
 import PublicRoute from "./components/PublicRoute/publicRoute";
 import Products from "./components/Products/products-component";
 import Cart from "./components/Cart/cart-component";
-import ProductsFaiulre from "./components/ProductsFailure/productsFailure-component";
 import ProtectedRoute from "./components/ProtectedRoute/protectedRoute-component";
 
 const App = () => {

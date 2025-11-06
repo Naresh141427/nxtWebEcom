@@ -16,6 +16,7 @@ const SearchProducts = ({ handleSearchproducts, currentSearch }) => {
     const handleOnSearch = (e) => {
         const productName = e.target.value
         setSearchedProduct(productName)
+        handleSearchproducts(searchProduct)
     }
     const handleForm = (e) => {
         e.preventDefault()
