@@ -6,17 +6,13 @@ import {
     SearchIconButton
 } from "./searchProducts-styles.js"
 
-const SearchProducts = ({ handleSearchproducts, currentSearch }) => {
+const SearchProducts = ({ handleSearchproducts }) => {
     const [searchProduct, setSearchedProduct] = useState("")
 
-    useEffect(() => {
-        setSearchedProduct(currentSearch)
-    }, [currentSearch])
 
     const handleOnSearch = (e) => {
         const productName = e.target.value
         setSearchedProduct(productName)
-        handleSearchproducts(searchProduct)
     }
     const handleForm = (e) => {
         e.preventDefault()
