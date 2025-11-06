@@ -1,26 +1,38 @@
 import styled from "styled-components"
-import { MobilebreakPoints } from "../../Breakpoints/breakpoints"
+import { DesktopBreakpoints, MobilebreakPoints } from "../../Breakpoints/breakpoints"
 
 
 export const LoginComponentContainer = styled.div`
     @media(min-width: ${MobilebreakPoints.extraSmall}){
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         display: flex;
         justify-content: center;
+        align-items: center;    
     }
+    
 `
 export const LoginContainer = styled.div`
         @media(min-width: ${MobilebreakPoints.extraSmall}){
-            width: 100%;
+            width: 100%; 
             display: flex;
             flex-direction: column; 
-            height: 100%;
             justify-content: center;
             gap: 2rem;
             max-width: 18rem;
             max-height: 34rem;
         }  
+        @media(min-width: 992px){
+            max-width: 100%;
+            height:50%;
+            flex-direction: row;
+            justify-content: center;
+        }
+        
+        @media(min-width: ${DesktopBreakpoints.medium}){
+            max-width: 90%;
+            
+        }
         
     `
 
@@ -31,6 +43,10 @@ export const LoginDetailsSection = styled.div`
             align-items: center;
             gap: 1.5rem
         }
+        @media(min-width: 992px){
+            width: 50%;
+        }
+        
     `
 
 export const LogInLogoImageContainer = styled.div`
@@ -52,6 +68,7 @@ export const LogInLogoImage = styled.img`
                 opacity: 1; 
             }
         }
+        
     `
 
 export const LoginImage = styled.img`
@@ -69,6 +86,10 @@ export const LoginImage = styled.img`
                 opacity: 1; 
             }
         }
+        @media(min-width: 992px){
+            height: 100%;
+            max-width: 28rem;
+        }
 
     `
 
@@ -81,6 +102,15 @@ export const LoginFormContainer = styled.form`
              
     
         }
+        @media(min-width: 992px){
+            width: 28rem;
+           justify-content:center;
+           gap: 2rem;
+        }
+        @media(min-width: ${DesktopBreakpoints.medium}){
+            max-width: 40%;
+        }
+        
     `
 export const LoginFormInputContainer = styled.div`
         display: flex;
@@ -94,6 +124,9 @@ export const LoginFormLabel = styled.label`
             font-family: "Roboto";
             font-size: 0.8rem;
             font-weight: 900;
+        }
+        @media(min-width: 992px){
+            font-size: 1rem;
         }
     `
 
@@ -114,6 +147,10 @@ export const LoginFormInput = styled.input`
                 opacity: 1; 
             }
         }
+        @media(min-width: 992px){
+            font-size: 1rem;
+            max-width: 20rem;
+        }
     `
 
 export const LoginButton = styled.button`
@@ -128,6 +165,10 @@ export const LoginButton = styled.button`
         cursor: pointer;
         padding: 0.5rem 1.3rem;
     }
+    @media(min-width: 992px){
+            font-size: 1.2rem;
+            max-width: 20rem;
+        }
     `
 export const ErrorMessage = styled.span`
     color: #ff0b37;
