@@ -12,16 +12,16 @@ import {
 } from "./filterProducts-styles.js"
 
 const FilterProducts = (props) => {
-    const { setSearchProducts, setCategoryName, setRating } = props
+    const { handleCategoryId, handleRatingChange, handleSearchproducts, currentSearch, currentCategory, currentRating } = props
     return (
         <Container>
             <SearchContainer>
-                <SearchProducts setSearchProducts={setSearchProducts} />
+                <SearchProducts handleSearchproducts={handleSearchproducts} currentSearch={currentSearch} />
             </SearchContainer>
             <CategoriesContainer>
-                <Category setCategoryName={setCategoryName} />
+                <Category handleCategoryId={handleCategoryId} currentCategory={currentCategory} />
             </CategoriesContainer>
-            <Rating setRating={setRating} />
+            <Rating handleRatingChange={handleRatingChange} currentRating={currentRating} />
         </Container>
     )
 }

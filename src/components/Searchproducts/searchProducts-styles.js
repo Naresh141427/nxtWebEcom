@@ -2,9 +2,8 @@ import { CiSearch } from "react-icons/ci";
 import styled from "styled-components"
 import { MobilebreakPoints, DesktopBreakpoints } from "../../Breakpoints/breakpoints"
 
-export const SearchContainer = styled.div`
-    @media(min-width: ${MobilebreakPoints.extraSmall}){
-
+export const SearchContainer = styled.form`
+    @media(min-width: ${MobilebreakPoints.extraSmall}){ 
         display: inline-flex;
         align-items: center;
         margin-right: 0.6px;
@@ -39,10 +38,19 @@ export const SearchInput = styled.input`
 
 `
 
+export const SearchIconButton = styled.button`
+    @media(min-width: ${MobilebreakPoints.extraSmall}){
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+    }
+`
 export const SearchIcon = styled(CiSearch)`
     @media(min-width: ${MobilebreakPoints.extraSmall}){
         font-size: 1rem;
         color: #475569; 
+        cursor: pointer;
+        border: none;
     }
     @media(min-width: ${MobilebreakPoints.medium}){
         font-size: 1.6rem;

@@ -13,28 +13,28 @@ import {
 import ProductHeader from '../ProductsHeader/productsheader-component.jsx';
 import FilterProducts from '../FilterProducts/filterProducts-component.jsx';
 import ProductCard from '../ProductsCard/productsCard-component.jsx';
+import ProductsFaiulre from '../ProductsFailure/productsFailure-component.jsx';
+import NoProducts from '../NoProducts/noProducts-component.jsx';
 
-
+import { apiStatusConstants } from '../../APIConstansta/apiConstants.js';
 
 const ProductsList = () => {
+    const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
     const [productsList, setProductsList] = useState([])
-    const [isDataLoading, setIsDataLoadng] = useState(false)
-    const [sortOption, setSortOption] = useState("")
     const [sortProductsOrder, setSortProductsOrder] = useState("")
     const [searchProducts, setSearchProducts] = useState("")
-    const [categoryName, setCategoryName] = useState("")
+    const [categoryId, setCategoryId] = useState("")
     const [rating, setRating] = useState("")
-    console.log(searchProducts, categoryName, rating);
-
+    const [erroeMessage, seterroEMessage] = useState("")
 
     useEffect(() => {
 
         const fetchProducts = async () => {
-            setIsDataLoadng(true)
+            setApiStatus(apiStatusConstants.inProgress)
+            seterroEMessage("")
             try {
-
                 const jtwToken = Cookies.get("jwt_token")
-                const url = `https://apis.ccbp.in/products?sort_by=${sortOption}`
+                const url = `https://apis.ccbp.in/products?sort_by=${sortProductsOrder}&category=${categoryId}&title_search=${searchProducts}&rating=${rating}`
                 const options = {
                     headers: {
                         Authorization: `Bearer ${jtwToken}`,
@@ -45,24 +45,88 @@ const ProductsList = () => {
                 if (response.ok) {
                     const { products } = await response.json()
                     setProductsList(products)
-                    setIsDataLoadng(false)
+                    setApiStatus(apiStatusConstants.success)
 
+                } else {
+                    if (response.status === 401) {
+                        setApiStatus(apiStatusConstants.failure)
+                        seterroEMessage("Your session expired. Please log in again.")
+                    } else {
+                        setApiStatus(apiStatusConstants.failure)
+                        seterroEMessage("Something went wrong. Server could not be reached.")
+                    }
                 }
             } catch (e) {
                 console.error(e.message)
+                seterroEMessage("Could not connect. Please check your internet.")
             }
         }
         fetchProducts()
 
-    }, [sortOption])
+    }, [sortProductsOrder, searchProducts, categoryId, rating])
 
     const sortProducts = (value) => {
-        setSortOption(value)
         setSortProductsOrder(value)
     }
 
+    const handleSearchproducts = (value) => {
+        setSearchProducts(value)
+        setCategoryId("")
+        setRating("")
+        setSortProductsOrder("")
+    }
+    const handleCategoryId = (value) => {
+        setCategoryId(value)
+        setSearchProducts("")
+        setRating("")
+        setSortProductsOrder("")
+    }
+    const handleRatingChange = (value) => {
+        setRating(value)
+        // setSearchProducts("")
+        // setCategoryId("")
+        // setSortProductsOrder("")
+    }
 
-    if (isDataLoading) {
+    const getProducts = () => {
+
+        return (
+            <ProductsContainer>
+                <FilterProducts
+                    handleSearchproducts={handleSearchproducts}
+                    handleCategoryId={handleCategoryId}
+                    handleRatingChange={handleRatingChange}
+                    currentSearch={searchProducts}
+                    currentCategory={categoryId}
+                    currentRating={rating}
+                />
+                {productsList.length === 0 ? (<NoProducts />) : (
+                    <AllProductsContainer>
+                        <ProductHeader sortProducts={sortProducts} sortProductsOrder={sortProductsOrder} />
+                        <ProductsListContainer>
+                            {productsList.map(({ title, brand, image_url, price, rating, id }) => {
+                                return (
+                                    <ProductCard
+                                        key={id}
+                                        brand={brand}
+                                        imageUrl={image_url}
+                                        price={price}
+                                        rating={rating}
+                                        title={title}
+                                    />
+                                )
+                            })}
+                        </ProductsListContainer>
+                    </AllProductsContainer>
+                )
+                }
+
+            </ProductsContainer >
+        )
+    }
+
+
+    const showLoader = () => {
         return (
             <ProductsContainer>
                 <LoaderContainer>
@@ -70,33 +134,20 @@ const ProductsList = () => {
                 </LoaderContainer>
             </ProductsContainer>
         )
-    } else {
-        return (
-            <ProductsContainer>
-                <FilterProducts
-                    setSearchProducts={setSearchProducts}
-                    setCategoryName={setCategoryName}
-                    setRating={setRating}
-                />
-                <AllProductsContainer>
-                    <ProductHeader sortProducts={sortProducts} sortProductsOrder={sortProductsOrder} />
-                    <ProductsListContainer>
-                        {productsList.map(({ title, brand, image_url, price, rating, id }) => {
-                            return (
-                                <ProductCard
-                                    key={id}
-                                    brand={brand}
-                                    imageUrl={image_url}
-                                    price={price}
-                                    rating={rating}
-                                    title={title}
-                                />
-                            )
-                        })}
-                    </ProductsListContainer>
-                </AllProductsContainer>
-            </ProductsContainer>
-        )
+
+    }
+
+    switch (apiStatus) {
+        case apiStatusConstants.inProgress:
+            return showLoader();
+        case apiStatusConstants.success:
+            return getProducts();
+        case apiStatusConstants.failure:
+            return <ProductsFaiulre erroeMessage={erroeMessage} />;
+        default:
+            return null;
+
     }
 }
+
 export default ProductsList

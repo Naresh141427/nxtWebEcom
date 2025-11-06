@@ -1,4 +1,4 @@
-import { useState } from "react"
+
 import {
     CategoriesHeader,
     CategoriesList,
@@ -8,45 +8,44 @@ import {
 
 const categoriesList = [
     {
-        id: 0,
+        id: 1,
         categoryName: "Clothing"
     },
     {
-        id: 1,
+        id: 2,
         categoryName: "Electronics"
     },
     {
-        id: 2,
+        id: 3,
         categoryName: "Appliances"
     },
     {
-        id: 3,
+        id: 4,
         categoryName: "Grocery"
     },
     {
-        id: 4,
+        id: 5,
         categoryName: "Toys"
     },
 ]
 
-const Category = ({ setCategoryName }) => {
-    const [selectedCategory, setSelectedCategory] = useState(null)
+const Category = ({ handleCategoryId, currentCategory }) => {
 
-    const handleItemCategory = (id, name) => {
-        setSelectedCategory(id)
-        setCategoryName(name)
+    const handleItemCategory = (id) => {
+        handleCategoryId(String(id))
     }
     return (
         <>
             <CategoriesHeader>Category</CategoriesHeader>
             <CategoriesList>
                 {categoriesList.map(({ id, categoryName }) => {
+                    const isSelected = String(id) === currentCategory
                     return (
                         <CategoriesListItem
                             key={id}
                             value={categoryName}
-                            className={selectedCategory === id ? "selected" : ""}
-                            onClick={() => handleItemCategory(id, categoryName)}
+                            className={isSelected ? "selected" : ""}
+                            onClick={() => handleItemCategory(id)}
                         >
                             {categoryName}
                         </CategoriesListItem>

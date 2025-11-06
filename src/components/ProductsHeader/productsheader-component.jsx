@@ -10,7 +10,6 @@ const ProductHeader = ({ sortProducts, sortProductsOrder }) => {
         <ProductHeaderContainer>
             <ProductsHeader>All Products</ProductsHeader>
             <SortProducts sortProducts={sortProducts} sortProductsOrder={sortProductsOrder} />
-
         </ProductHeaderContainer>
     )
 }

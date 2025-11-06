@@ -6,15 +6,13 @@ import {
     StarIcon
 } from "./rating-styles.js";
 
+const Rating = ({ count = 5, handleRatingChange, currentRating }) => {
 
-const Rating = ({ count = 5, defaultRating = 0, setRating }) => {
-    const [ratingValue, setRatingValue] = useState(defaultRating);
     const [hoverValue, setHoverValue] = useState(null);
     const stars = [...Array(count)];
 
-    const handleRating = (rating) => {
-        setRatingValue(rating);
-        setRating(rating)
+    const handleClick = (rating) => {
+        handleRatingChange(String(rating));
     };
 
     const handleMouseEnter = (rating) => {
@@ -24,7 +22,10 @@ const Rating = ({ count = 5, defaultRating = 0, setRating }) => {
     const handleMouseLeave = () => {
         setHoverValue(null);
     };
-    const displayValue = hoverValue || ratingValue;
+
+
+    const ratingAsNumber = Number(currentRating);
+    const displayValue = hoverValue || ratingAsNumber;
 
     return (
         <RatingContainer>
@@ -37,7 +38,7 @@ const Rating = ({ count = 5, defaultRating = 0, setRating }) => {
                             <StarIcon
                                 key={index}
                                 className={value <= displayValue ? "active" : ""}
-                                onClick={() => handleRating(value)}
+                                onClick={() => handleClick(value)}
                                 onMouseEnter={() => handleMouseEnter(value)}
                                 onMouseLeave={handleMouseLeave}
                             />

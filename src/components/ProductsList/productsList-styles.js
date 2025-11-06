@@ -13,6 +13,7 @@ export const ProductsContainer = styled.div`
   }
   @media(min-width: ${MobilebreakPoints.large}){
     flex-direction: row;
+    justify-content: flex-start;
     gap:  2.5rem; 
   
   }
@@ -46,6 +47,7 @@ export const ProductsListContainer = styled.ul`
 
 `
 export const LoaderContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
 `

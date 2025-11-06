@@ -1,26 +1,40 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
     SearchContainer,
     SearchInput,
-    SearchIcon
+    SearchIcon,
+    SearchIconButton
 } from "./searchProducts-styles.js"
 
-const SearchProducts = ({ setSearchProducts }) => {
-    const [searcValue, setSearchValue] = useState("")
+const SearchProducts = ({ handleSearchproducts, currentSearch }) => {
+    const [searchProduct, setSearchedProduct] = useState("")
+
+    useEffect(() => {
+        setSearchedProduct(currentSearch)
+    }, [currentSearch])
+
     const handleOnSearch = (e) => {
         const productName = e.target.value
-        setSearchProducts(productName)
-        setSearchValue(productName)
+        setSearchedProduct(productName)
+    }
+    const handleForm = (e) => {
+        e.preventDefault()
+        handleSearchproducts(searchProduct)
     }
     return (
-        <SearchContainer>
+        <SearchContainer
+            onSubmit={handleForm}
+        >
             <SearchInput
                 type="search"
                 placeholder="Search"
-                value={searcValue}
+                value={searchProduct}
                 onChange={handleOnSearch}
             />
-            <SearchIcon />
+            <SearchIconButton type="submit" >
+                <SearchIcon />
+            </SearchIconButton>
+
         </SearchContainer>
     )
 }

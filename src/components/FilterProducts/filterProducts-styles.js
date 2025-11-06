@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { MobilebreakPoints, DesktopBreakpoints } from "../../Breakpoints/breakpoints"
 
 export const Container = styled.div`
+
     display: flex;
     flex-direction: column;
     gap: 1rem;
