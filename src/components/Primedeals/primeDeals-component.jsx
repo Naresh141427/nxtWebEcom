@@ -56,6 +56,7 @@ const PrimeDealSection = () => {
                     {primeDealProducts.map(({ id, title, brand, price, rating, image_url }) => {
                         return (<ProductCard
                             key={id}
+                            productId={id}
                             title={title}
                             brand={brand}
                             price={price}

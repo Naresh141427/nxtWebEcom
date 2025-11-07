@@ -67,9 +67,6 @@ export const ProductCardItemTitle = styled.span`
     @media(min-width: ${MobilebreakPoints.medium}){
         font-size: 1.3rem;
     } 
-    ${'' /* @media(min-width: ${DesktopBreakpoints.medium}){
-    font-size: 1.5rem;
-    } */}
 `
 export const ProductCardItemBrand = styled.span`
     color:  #475569;
@@ -93,9 +90,7 @@ export const ProductCardItemPrice = styled.span`
     @media(min-width: ${MobilebreakPoints.medium}){
         font-size: 1.3rem;
     }   
-    ${'' /* @media(min-width: ${DesktopBreakpoints.medium}){
-    font-size: 1.5rem;
-    }   */}
+   
 `
 export const ProductCardItemRatingContainer = styled.div`
     background-color:#0b69ff;
@@ -110,9 +105,7 @@ export const ProductCardItemRating = styled.span`
     @media(min-width: ${MobilebreakPoints.medium}){
         font-size: 1.3rem;
     }
-    ${'' /* @media(min-width: ${DesktopBreakpoints.medium}){
-    font-size: 1.5rem;
-    } */}
+   
     
     
 `

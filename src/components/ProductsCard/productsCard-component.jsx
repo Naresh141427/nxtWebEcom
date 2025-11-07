@@ -15,11 +15,10 @@ import {
 } from "./productsCard-styles.js"
 const ProductCard = (props) => {
     const [productImageLoaded, setProductImageLoaded] = useState(false)
-    const { title, brand, imageUrl, price, rating } = props
-
+    const { title, brand, imageUrl, price, rating, productId } = props
     return (
         <ProductContainer>
-            <ProductCardItemContainer>
+            <ProductCardItemContainer to={`/products/${productId}`}>
                 <ProductCardItemImage
                     alt="product-name"
                     src={imageUrl}
@@ -38,7 +37,7 @@ const ProductCard = (props) => {
                     </ProductCardItemPriceDetailsContainer>
                 </ProductCardDetailsContainer>
             </ProductCardItemContainer>
-        </ProductContainer>
+        </ProductContainer >
 
     )
 }

@@ -22,10 +22,6 @@ import { apiStatusConstants } from '../../APIConstansta/apiConstants.js';
 const ProductsList = () => {
     const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
     const [productsList, setProductsList] = useState([])
-    // const [sortProductsOrder, setSortProductsOrder] = useState("")
-    // const [searchProducts, setSearchProducts] = useState("")
-    // const [categoryId, setCategoryId] = useState("")
-    // const [rating, setRating] = useState("")
     const [erroeMessage, seterroEMessage] = useState("")
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -41,7 +37,6 @@ const ProductsList = () => {
             seterroEMessage("")
             try {
                 const jtwToken = Cookies.get("jwt_token")
-                // const url = `https://apis.ccbp.in/products?sort_by=${sortProductsOrder}&category=${categoryId}&title_search=${searchProducts}&rating=${rating}`
                 const queryString = searchParams.toString()
                 const url = `https://apis.ccbp.in/products?${queryString}`
                 const options = {
@@ -75,7 +70,6 @@ const ProductsList = () => {
     }, [searchParams])
 
     const sortProducts = (value) => {
-        // setSortProductsOrder(value)
         setSearchParams(prevParams => {
             prevParams.set('sort_by', value)
             return prevParams
@@ -83,17 +77,9 @@ const ProductsList = () => {
     }
 
     const handleSearchproducts = (value) => {
-        // setSearchProducts(value)
-        // setCategoryId("")
-        // setRating("")
-        // setSortProductsOrder("")
         setSearchParams({ title_search: value })
     }
     const handleCategoryId = (value) => {
-        // setCategoryId(value)
-        // setSearchProducts("")
-        // setRating("")
-        // setSortProductsOrder("")
         setSearchParams({ category: value })
     }
     const handleRatingChange = (value) => {
@@ -118,6 +104,7 @@ const ProductsList = () => {
                                     return (
                                         <ProductCard
                                             key={id}
+                                            productId={id}
                                             brand={brand}
                                             imageUrl={image_url}
                                             price={price}
