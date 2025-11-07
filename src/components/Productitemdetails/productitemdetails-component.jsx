@@ -40,7 +40,7 @@ const ProductItemDetails = () => {
             }
         }
         fetchDetails()
-    }, [])
+    }, [productId])
 
     const showLoader = () => {
         return (
