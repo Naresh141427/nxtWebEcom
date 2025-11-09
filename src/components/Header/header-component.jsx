@@ -1,5 +1,6 @@
 import { useNavigate, Link } from "react-router-dom"
 import Cookies from "js-cookie"
+import { useAuth } from "../../Context/AuthContext"
 
 import {
     NavHeader,
@@ -16,6 +17,7 @@ import {
 import { useState } from "react"
 
 const Header = () => {
+    const { logOut } = useAuth()
     const [navBarLogoLoaded, setNavBarLogoLoaded] = useState(false)
     const [navBarLogOutLoaded, setNavBarLogOutLoaded] = useState(false)
     const [homeIconLoaded, setHomeIconLoaded] = useState(false)
@@ -23,7 +25,7 @@ const Header = () => {
     const [cartIconLoaded, setCartIconLoaded] = useState(false)
     const navigate = useNavigate()
     const handleMobileLogOut = () => {
-        Cookies.remove("jwt_token")
+        logOut()
         navigate("/login", { replace: true })
 
     }

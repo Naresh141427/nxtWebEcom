@@ -14,7 +14,7 @@ import {
 import { ThreeDots } from "react-loader-spinner"
 import ProductCard from "../ProductsCard/productsCard-component.jsx"
 
-import { apiStatusConstants } from "../../APIConstansta/apiConstants.js"
+import { apiStatusConstants } from "../../APIConstanstants/apiConstants.js"
 const PrimeDealSection = () => {
     const [primeDealProducts, setPrimeDealProducts] = useState([])
     const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)

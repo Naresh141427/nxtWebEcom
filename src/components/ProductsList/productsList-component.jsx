@@ -17,7 +17,7 @@ import ProductCard from '../ProductsCard/productsCard-component.jsx';
 import ProductsFaiulre from '../ProductsFailure/productsFailure-component.jsx';
 import NoProducts from '../NoProducts/noProducts-component.jsx';
 
-import { apiStatusConstants } from '../../APIConstansta/apiConstants.js';
+import { apiStatusConstants } from '../../APIConstanstants/apiConstants.js';
 
 const ProductsList = () => {
     const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)

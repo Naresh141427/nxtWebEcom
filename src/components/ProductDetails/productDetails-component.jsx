@@ -1,5 +1,6 @@
 
 import SimilarProducts from "../SimilarProducts/similarProducts-component.jsx"
+import { useCart } from "../../Context/CartContext.jsx"
 import {
     ProductImageContainer,
     ProductImage,
@@ -28,7 +29,12 @@ import {
 } from "./productDetails-styles.js"
 
 const ProductDetails = ({ productDetailsObject }) => {
-    const { similar_products: similarProducts, title, price, image_url, rating, total_reviews, description, availability, brand } = productDetailsObject
+    const { addItemsToTheCart } = useCart()
+    const { similar_products: similarProducts, ...productInfo } = productDetailsObject
+    const { title, price, image_url, rating, total_reviews, description, availability, brand } = productInfo
+    const handleAddingItemsToCart = () => {
+        addItemsToTheCart({ ...productInfo })
+    }
     return (
         <ProductDetailsContainer>
             <TopSection>
@@ -58,7 +64,9 @@ const ProductDetails = ({ productDetailsObject }) => {
                             <Quantity>1</Quantity>
                             <DecreaseQuantity></DecreaseQuantity>
                         </QuantityControlContainer>
-                        <AddToCartButton>ADD TO CART</AddToCartButton>
+                        <AddToCartButton onClick={handleAddingItemsToCart}>
+                            ADD TO CART
+                        </AddToCartButton>
                     </AddTOCartContainer>
                 </ProductDescriptionContainer>
             </TopSection>

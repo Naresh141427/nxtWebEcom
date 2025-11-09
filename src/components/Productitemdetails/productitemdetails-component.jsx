@@ -4,7 +4,7 @@ import Cookies from "js-cookie"
 
 import { ThreeDots } from 'react-loader-spinner';
 import './productitemdetails-styles.js';
-import { apiStatusConstants } from '../../APIConstansta/apiConstants';
+import { apiStatusConstants } from '../../APIConstanstants/apiConstants.js';
 import NoProducts from '../NoProducts/noProducts-component';
 
 
@@ -15,7 +15,6 @@ const ProductItemDetails = () => {
     const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial)
     const [productDetailsObject, setProductDetailsObject] = useState({})
     const { id: productId } = useParams()
-    console.log(productDetailsObject);
 
     useEffect(() => {
         const fetchDetails = async () => {

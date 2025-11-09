@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useAuth } from "../../Context/AuthContext";
 
 import {
     LoginContainer,
@@ -19,6 +20,7 @@ import {
 } from "./login-styles";
 
 const Login = () => {
+    const { logIn } = useAuth()
 
     const [formData, setFormData] = useState({
         username: "",
@@ -62,7 +64,7 @@ const Login = () => {
             if (response.ok) {
                 const { jwt_token: jwtToken } = data
                 setSuccessMessage("Login successful! Redirecting...");
-                Cookies.set("jwt_token", jwtToken, { expires: 30 })
+                logIn(jwtToken)
                 navigate(redirectPath, { replace: true })
             } else {
                 setErrorMessage(data.error_msg);
