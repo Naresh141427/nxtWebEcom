@@ -9,7 +9,7 @@ export const Container = styled.li`
     gap: 1.5rem; 
     border-radius: 0.5rem;
     box-shadow: 0px 0.1px 4px 0px #bfbfbf;  
-    padding-top: 1rem;
+    padding: 1rem 0.4rem;
     @media(min-width: ${MobilebreakPoints.small}){
         padding: 1rem 0.5rem;
     }
@@ -97,6 +97,7 @@ export const CartProductDetailsTopContainer = styled.div`
 export const CartProductTitle = styled.span`
    color: #12022f;
     font-size:0.9rem;
+    font-weight: 600;
     @media(min-width: ${MobilebreakPoints.small}){
         font-size: 1.3rem;
     }
@@ -154,9 +155,7 @@ export const CartProductRating = styled.span`
     @media(min-width: ${MobilebreakPoints.medium}){
         font-size: 01.2rem
     }
-    ${'' /* @media(min-width: ${MobilebreakPoints.large}){
-        font-size: 1.3rem
-    } */}
+    
 `
 
 export const CartProductReviewContainer = styled.div`
@@ -184,17 +183,21 @@ export const CartProductPrice = styled.span`
     @media(min-width: ${MobilebreakPoints.medium}){
         font-size: 01.3rem
     }
-    ${'' /* @media(min-width: ${MobilebreakPoints.large}){
-        font-size: 1.4rem
-    } */}
+   
 `
 
 export const TotalPriceOfEachItem = styled.span`
     position: relative;
-    display: none;
+     display: inline;
     font-style: italic;
-    font-weight: 600;
-     @media(min-width: ${MobilebreakPoints.large}){
-        display: inline;
+    font-weight: 500;
+    font-size: 0.87rem;
+    margin-top: 0.4rem;
+     @media(min-width: ${MobilebreakPoints.small}){
+       font-size: 1rem;
+    }
+     @media(min-width: ${MobilebreakPoints.medium}){
+       font-size: 1.1rem;
+       margin: 0;
     }
 `

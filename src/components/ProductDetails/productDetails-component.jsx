@@ -32,8 +32,10 @@ const ProductDetails = ({ productDetailsObject }) => {
     const { addItemsToTheCart } = useCart()
     const { similar_products: similarProducts, ...productInfo } = productDetailsObject
     const { title, price, image_url, rating, total_reviews, description, availability, brand } = productInfo
+
     const handleAddingItemsToCart = () => {
-        addItemsToTheCart({ ...productInfo })
+        addItemsToTheCart(productInfo)
+
     }
     return (
         <ProductDetailsContainer>

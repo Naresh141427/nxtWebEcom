@@ -25,14 +25,14 @@ import {
 } from "./cartDetails-styles.js"
 
 const CartDetails = ({ cartItem }) => {
-    const { title, price, image_url, rating, total_reviews, brand } = cartItem
+    const { title, price, image_url, rating, total_reviews, brand, quantity } = cartItem
     return (
         <Container>
             <ProductImageContainer>
                 <ProductImage src={image_url} alt={title} />
                 <QuantityControlContainer>
                     <DecreaseQuanity />
-                    <QuantityTitle>Qty: {1}</QuantityTitle>
+                    <QuantityTitle>Qty: {quantity}</QuantityTitle>
                     <IncreaseQuanity />
                 </QuantityControlContainer>
             </ProductImageContainer>
@@ -53,8 +53,9 @@ const CartDetails = ({ cartItem }) => {
                 <CartPriceContainer>
                     <CartProductPrice>Price: {price}/-</CartProductPrice>
                 </CartPriceContainer>
+                <TotalPriceOfEachItem>Total Price: {price * quantity}/-</TotalPriceOfEachItem>
             </CartProductDetailsContainer>
-            <TotalPriceOfEachItem>Total Price: 78969/-</TotalPriceOfEachItem>
+
         </Container>
     )
 }

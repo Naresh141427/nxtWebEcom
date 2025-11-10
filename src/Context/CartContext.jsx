@@ -7,10 +7,22 @@ const CartContext = React.createContext({
 })
 
 export const CartContextProvider = ({ children }) => {
-    const [cartItems, setCatItems] = useState([])
+    const [cartItems, setCartItems] = useState([])
 
     const addItemsToTheCart = (item) => {
-        setCatItems([...cartItems, item])
+        const isItemInCart = cartItems.some(cartItem => cartItem.id === item.id);
+
+        if (isItemInCart) {
+            setCartItems(prevItems =>
+                prevItems.map(cartItem =>
+                    cartItem.id === item.id
+                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                        : cartItem
+                )
+            );
+        } else {
+            setCartItems(prevItems => [...prevItems, { ...item, quantity: 1 }]);
+        }
     }
 
     return (
