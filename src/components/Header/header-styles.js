@@ -24,6 +24,7 @@ export const NavbarLogo = styled.img`
   background-color: #d7dfe9;
   transition: background-color 0.3s ease, opacity 0.3s ease;
   border-radius: 0.2rem;
+  cursor: pointer;
   &.loaded{
       background-color: transparent;
       border-radius: 0;

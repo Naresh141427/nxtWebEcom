@@ -100,7 +100,8 @@ const ProductsList = () => {
                         <AllProductsContainer>
                             <ProductHeader sortProducts={sortProducts} sortProductsOrder={sortProductsOrder} />
                             <ProductsListContainer>
-                                {productsList.map(({ title, brand, image_url, price, rating, id }) => {
+                                {productsList.map((product) => {
+                                    const { title, brand, image_url, price, rating, id } = product
                                     return (
                                         <ProductCard
                                             key={id}

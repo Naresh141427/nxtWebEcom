@@ -27,15 +27,23 @@ import {
     BottomSection
 
 } from "./productDetails-styles.js"
+import { useState } from "react"
 
 const ProductDetails = ({ productDetailsObject }) => {
     const { addItemsToTheCart } = useCart()
+    const [productQuantity, setProductQuantity] = useState(1)
     const { similar_products: similarProducts, ...productInfo } = productDetailsObject
     const { title, price, image_url, rating, total_reviews, description, availability, brand } = productInfo
 
     const handleAddingItemsToCart = () => {
-        addItemsToTheCart(productInfo)
+        addItemsToTheCart(productInfo, productQuantity)
 
+    }
+    const handleItemQuantityIncrease = () => {
+        setProductQuantity(prevQunity => prevQunity + 1)
+    }
+    const handleItemQuantityDecrease = () => {
+        if (productQuantity > 1) setProductQuantity(prevQunity => prevQunity - 1)
     }
     return (
         <ProductDetailsContainer>
@@ -54,7 +62,7 @@ const ProductDetails = ({ productDetailsObject }) => {
                             <ProductRating>{rating}</ProductRating>
                             <StarIcon />
                         </ProductRatingContainer>
-                        <ProductReview>{total_reviews} Reviews</ProductReview>
+                        <ProductReview>( {total_reviews} Reviews )</ProductReview>
                     </ProductReviewContainer>
                     <ProductDescription>{description}</ProductDescription>
                     <Avialability>Available: <SpecialText>{availability}</SpecialText></Avialability>
@@ -62,9 +70,9 @@ const ProductDetails = ({ productDetailsObject }) => {
                     <HorizontalRule />
                     <AddTOCartContainer>
                         <QuantityControlContainer>
-                            <IncreaseQuanity></IncreaseQuanity>
-                            <Quantity>1</Quantity>
-                            <DecreaseQuantity></DecreaseQuantity>
+                            <IncreaseQuanity onClick={handleItemQuantityIncrease} />
+                            <Quantity>{productQuantity}</Quantity>
+                            <DecreaseQuantity onClick={handleItemQuantityDecrease} />
                         </QuantityControlContainer>
                         <AddToCartButton onClick={handleAddingItemsToCart}>
                             ADD TO CART

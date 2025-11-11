@@ -10,6 +10,7 @@ export const Container = styled.li`
     border-radius: 0.5rem;
     box-shadow: 0px 0.1px 4px 0px #bfbfbf;  
     padding: 1rem 0.4rem;
+    
     @media(min-width: ${MobilebreakPoints.small}){
         padding: 1rem 0.5rem;
     }

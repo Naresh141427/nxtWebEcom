@@ -1,4 +1,4 @@
-
+import { useCart } from "../../Context/CartContext.jsx"
 
 import {
     Container,
@@ -25,15 +25,16 @@ import {
 } from "./cartDetails-styles.js"
 
 const CartDetails = ({ cartItem }) => {
+    const { decreaseItemsQuantity, inceraseItemsQuantity } = useCart()
     const { title, price, image_url, rating, total_reviews, brand, quantity } = cartItem
     return (
         <Container>
             <ProductImageContainer>
                 <ProductImage src={image_url} alt={title} />
                 <QuantityControlContainer>
-                    <DecreaseQuanity />
+                    <DecreaseQuanity onClick={() => decreaseItemsQuantity(cartItem)} />
                     <QuantityTitle>Qty: {quantity}</QuantityTitle>
-                    <IncreaseQuanity />
+                    <IncreaseQuanity onClick={() => inceraseItemsQuantity(cartItem)} />
                 </QuantityControlContainer>
             </ProductImageContainer>
             <CartProductDetailsContainer>

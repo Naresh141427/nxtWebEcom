@@ -1,5 +1,4 @@
-import { useNavigate, Link } from "react-router-dom"
-import Cookies from "js-cookie"
+import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../Context/AuthContext"
 
 import {
@@ -29,6 +28,9 @@ const Header = () => {
         navigate("/login", { replace: true })
 
     }
+    const handleNavLogoClick = () => {
+        navigate("/")
+    }
     return (
         <NavHeader>
             <Navbar>
@@ -40,6 +42,7 @@ const Header = () => {
                     height="32px"
                     className={navBarLogoLoaded ? "loaded" : ""}
                     onLoad={() => setNavBarLogoLoaded(true)}
+                    onClick={handleNavLogoClick}
                 />
                 <NavMenu>
                     <NavMenuLinks to="/">Home</NavMenuLinks>
