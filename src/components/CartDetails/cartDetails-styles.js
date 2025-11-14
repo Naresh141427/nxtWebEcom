@@ -1,7 +1,7 @@
 import styled from "styled-components"
-import { FaLessThan, FaGreaterThan } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 import { RiCloseCircleFill } from "react-icons/ri";
+import { IoMdAdd, IoMdRemove } from "react-icons/io";
 import { MobilebreakPoints, DesktopBreakpoints } from "../../Breakpoints/breakpoints"
 
 export const Container = styled.li`
@@ -52,14 +52,7 @@ export const QuantityControlContainer = styled.div`
     
 `
 
-export const IncreaseQuanity = styled(FaGreaterThan)`
-    font-size: 0.7rem;
-    color: #475569;
-    cursor: pointer;
-    @media(min-width: ${MobilebreakPoints.small}){
-        font-size: 0.95rem;
-    }
-`
+
 export const QuantityTitle = styled.span`
     color: #12022f;
     font-size:0.77rem;
@@ -67,14 +60,6 @@ export const QuantityTitle = styled.span`
         font-size: 1.2rem;
     }
  
-`
-export const DecreaseQuanity = styled(FaLessThan)`
-    color: #475569;
-    cursor: pointer;
-    font-size: 0.7rem;
-    @media(min-width: ${MobilebreakPoints.small}){
-        font-size: 0.95rem;
-    }
 `
 
 export const CartProductDetailsContainer = styled.div`
@@ -98,7 +83,6 @@ export const CartProductDetailsTopContainer = styled.div`
 export const CartProductTitle = styled.span`
    color: #12022f;
     font-size:0.9rem;
-    font-weight: 600;
     @media(min-width: ${MobilebreakPoints.small}){
         font-size: 1.1rem;
     }
@@ -201,11 +185,49 @@ export const CloseIcon = styled(RiCloseCircleFill)`
     font-size: 1rem;
     color: #171f46;
     position: absolute;
-    right: 1.8rem;
+    right: 0.7rem;
+    top: 0.3rem;
     cursor: pointer;
     @media(min-width: ${MobilebreakPoints.small}){
         font-size: 1.6rem;
 
     }
    
+`
+export const QuantityContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.2rem;
+  border: 1px solid #616e7c;
+  @media (min-width: ${DesktopBreakpoints.large}){
+    height: 1.3rem;
+    width: 1.3rem;
+    
+  }
+`
+
+export const DecreaseQuantity = styled(IoMdRemove)`
+  @media (min-width: ${MobilebreakPoints.extraSmall}){
+    color:  #616e7c;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  @media (min-width: ${DesktopBreakpoints.medium}){
+    font-size: 1.5rem;
+    
+  }
+`
+export const IncreaseQuanity = styled(IoMdAdd)`
+  @media (min-width: ${MobilebreakPoints.extraSmall}){
+    color:  #616e7c;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  @media (min-width: ${DesktopBreakpoints.medium}){
+    font-size: 1.5rem;
+    
+  }
 `

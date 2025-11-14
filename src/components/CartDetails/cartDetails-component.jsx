@@ -8,7 +8,7 @@ import {
     QuantityControlContainer,
     IncreaseQuanity,
     QuantityTitle,
-    DecreaseQuanity,
+    // DecreaseQuanity,
     CartProductDetailsContainer,
     CartProductTitle,
     CartProductBrand,
@@ -22,7 +22,10 @@ import {
     CartProductDetailsTopContainer,
     CartPriceContainer,
     TotalPriceOfEachItem,
-    CloseIcon
+    CloseIcon,
+    QuantityContainer,
+    DecreaseQuantity,
+    // IncreaseQuanity
 
 } from "./cartDetails-styles.js"
 import { showErrorToast } from "../../Utils/toastUtils.js"
@@ -43,9 +46,11 @@ const CartDetails = ({ cartItem }) => {
             <ProductImageContainer>
                 <ProductImage src={image_url} alt={title} />
                 <QuantityControlContainer>
-                    <DecreaseQuanity onClick={() => decreaseItemsQuantity(cartItem)} />
+                    {/* <DecreaseQuanity onClick={() => decreaseItemsQuantity(cartItem)} /> */}
+                    <QuantityContainer> <DecreaseQuantity onClick={() => decreaseItemsQuantity(cartItem)} /> </QuantityContainer>
                     <QuantityTitle>Qty: {quantity}</QuantityTitle>
-                    <IncreaseQuanity onClick={() => addItemsToTheCart(cartItem)} />
+                    <QuantityContainer> <IncreaseQuanity onClick={() => addItemsToTheCart(cartItem)} /></QuantityContainer>
+                    {/* <IncreaseQuanity onClick={() => addItemsToTheCart(cartItem)} /> */}
                 </QuantityControlContainer>
             </ProductImageContainer>
             <CartProductDetailsContainer>

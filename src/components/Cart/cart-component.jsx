@@ -47,7 +47,7 @@ const Cart = () => {
 
                             />
                             <EmptyCartHeader>Your Cart Is Empty</EmptyCartHeader>
-                            <EmptyCartDescription>Add items to your cart to see them here"</EmptyCartDescription>
+                            <EmptyCartDescription>Add items to your cart to see them here</EmptyCartDescription>
                             <ShopNowButton onClick={handleShopNowButton}>Shop Now</ShopNowButton>
                         </EmptyCartcontainer>
                     )

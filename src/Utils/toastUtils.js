@@ -31,17 +31,4 @@ export const showErrorToast = (message, duration = 700) => {
 };
 
 
-export const showNeutralToast = (message, duration = 700) => {
-    toast(message, {
-        duration,
-        style: {
-            background: "#e3f2fd",
-            color: "#0d47a1",
-            fontWeight: "600",
-        },
-        iconTheme: {
-            primary: "#0d47a1",
-            secondary: "#ffffff",
-        },
-    });
-};
+

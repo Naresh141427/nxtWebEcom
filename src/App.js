@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { MobilebreakPoints } from "./Breakpoints/breakpoints";
 
 export const GlobalStyle = createGlobalStyle`
   html, body {
@@ -11,12 +10,22 @@ export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     font-family: "Roboto";
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
   }
 
   #root {
     margin: 0;
   }
 
+  input, textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}
 
 
 `;

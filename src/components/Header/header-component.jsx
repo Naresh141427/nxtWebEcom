@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../Context/AuthContext"
 import { useCart } from "../../Context/CartContext"
-import toast from "react-hot-toast"
 
 import {
     NavHeader,
@@ -27,6 +26,8 @@ const Header = () => {
     const [productsIconLoaded, setProductsIconLoaded] = useState(false)
     const [cartIconLoaded, setCartIconLoaded] = useState(false)
     const navigate = useNavigate()
+
+    const cartLength = cartItems.length
     const handleMobileLogOut = () => {
         logOut()
         navigate("/login", { replace: true })
@@ -51,7 +52,10 @@ const Header = () => {
                 <NavMenu>
                     <NavMenuLinks to="/">Home</NavMenuLinks>
                     <NavMenuLinks to="/products">Products</NavMenuLinks>
-                    <NavMenuLinks to="/cart" className={`isBouncing ? "bounce" : ""`}>Cart <CartTotalItems>{cartItems.length}</CartTotalItems></NavMenuLinks>
+                    <NavMenuLinks to="/cart" className={`isBouncing ? "bounce" : ""`}>
+                        Cart
+                        {cartLength > 0 ? <CartTotalItems>{cartLength}</CartTotalItems> : ""}
+                    </NavMenuLinks>
                     <NavButton onClick={handleMobileLogOut}>LogOut</NavButton>
                 </NavMenu>
             </Navbar>

@@ -234,10 +234,12 @@ export const AddTOCartContainer = styled.div`
 `
 export const QuantityControlContainer = styled.div`
   @media (min-width: ${MobilebreakPoints.extraSmall}){
+    padding: 0 0.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+  } 
+  
 `
 export const IncreaseQuanity = styled(IoMdAdd)`
   @media (min-width: ${MobilebreakPoints.extraSmall}){
@@ -273,6 +275,21 @@ export const DecreaseQuantity = styled(IoMdRemove)`
     
   }
 `
+export const QuantityContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.2rem;
+  border: 1px solid #616e7c;
+  @media (min-width: ${DesktopBreakpoints.large}){
+    height: 1.3rem;
+    width: 1.3rem;
+    
+  }
+`
+
 export const AddToCartButton = styled.button`
   @media (min-width: ${MobilebreakPoints.extraSmall}){
     color:  white;

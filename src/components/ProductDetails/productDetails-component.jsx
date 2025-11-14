@@ -1,5 +1,6 @@
 
-import SimilarProducts from "../SimilarProducts/similarProducts-component.jsx"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { useCart } from "../../Context/CartContext.jsx"
 
 import {
@@ -25,23 +26,31 @@ import {
     DecreaseQuantity,
     AddToCartButton,
     TopSection,
-    BottomSection
+    BottomSection,
+    QuantityContainer
 
 } from "./productDetails-styles.js"
-import { useState } from "react"
+
 import { showSuccessToast } from "../../Utils/toastUtils.js"
+import SimilarProducts from "../SimilarProducts/similarProducts-component.jsx"
 
 const ProductDetails = ({ productDetailsObject }) => {
-    const { addItemsToTheCart } = useCart()
+    const navigate = useNavigate()
+
+    const { addItemsToTheCart, cartItems } = useCart()
     const [productQuantity, setProductQuantity] = useState(1)
     const { similar_products: similarProducts, ...productInfo } = productDetailsObject
-    const { title, price, image_url, rating, total_reviews, description, availability, brand } = productInfo
+    const { id, title, price, image_url, rating, total_reviews, description, availability, brand } = productInfo
 
+    const isItemPresentInCart = cartItems.some(cartItem => cartItem.id === id)
     const handleAddingItemsToCart = () => {
-        addItemsToTheCart(productInfo, productQuantity)
-        showSuccessToast("Item Added to cart", 500);
-
-
+        if (isItemPresentInCart) {
+            navigate("/cart")
+        }
+        else {
+            addItemsToTheCart(productInfo, productQuantity)
+            showSuccessToast("Item Added to cart", 500);
+        }
 
     }
     const handleItemQuantityIncrease = () => {
@@ -77,12 +86,15 @@ const ProductDetails = ({ productDetailsObject }) => {
                     <HorizontalRule />
                     <AddTOCartContainer>
                         <QuantityControlContainer>
-                            <DecreaseQuantity onClick={handleItemQuantityDecrease} />
-                            <Quantity>{productQuantity}</Quantity>
-                            <IncreaseQuanity onClick={handleItemQuantityIncrease} />
+                            {!isItemPresentInCart ?
+                                <QuantityContainer> <DecreaseQuantity onClick={handleItemQuantityDecrease} /> </QuantityContainer> :
+                                ""
+                            }
+                            {!isItemPresentInCart ? (<Quantity>{productQuantity}</Quantity>) : ""}
+                            {!isItemPresentInCart ? <QuantityContainer> <IncreaseQuanity onClick={handleItemQuantityIncrease} /></QuantityContainer> : ""}
                         </QuantityControlContainer>
                         <AddToCartButton onClick={handleAddingItemsToCart}>
-                            ADD TO CART
+                            {isItemPresentInCart ? "GO TO CART" : "ADD TO CART"}
                         </AddToCartButton>
                     </AddTOCartContainer>
                 </ProductDescriptionContainer>
