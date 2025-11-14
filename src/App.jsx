@@ -10,6 +10,7 @@ import Products from "./components/Products/products-component";
 import Cart from "./components/Cart/cart-component";
 import ProtectedRoute from "./components/ProtectedRoute/protectedRoute-component";
 import ProductItemDetails from "./components/Productitemdetails/productitemdetails-component";
+import NotFound from "./components/NotFound/notFound-component";
 
 const App = () => {
     return (
@@ -34,6 +35,7 @@ const App = () => {
                     <Route path="cart" element={<Cart />} />
 
                 </Route>
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </>
     )

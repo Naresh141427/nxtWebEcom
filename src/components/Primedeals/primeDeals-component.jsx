@@ -24,23 +24,28 @@ const PrimeDealSection = () => {
     useEffect(() => {
         const fetchPrimeProducts = async () => {
 
-            const jwtToken = Cookies.get("jwt_token")
-            const url = "https://apis.ccbp.in/prime-deals"
-            const options = {
-                headers: {
-                    Authorization: `Bearer ${jwtToken}`,
-                },
-                method: "GET"
-            }
-            setApiStatus(apiStatusConstants.inProgress)
-            const response = await fetch(url, options)
-            if (response.ok) {
+            try {
+                const jwtToken = Cookies.get("jwt_token")
+                const url = "https://apis.ccbp.in/prime-deals"
+                const options = {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`,
+                    },
+                    method: "GET"
+                }
+                setApiStatus(apiStatusConstants.inProgress)
+                const response = await fetch(url, options)
+                if (response.ok) {
 
-                const { prime_deals } = await response.json()
-                setPrimeDealProducts(prime_deals)
-                setApiStatus(apiStatusConstants.success)
-            }
-            if (response.status === 401) {
+                    const { prime_deals } = await response.json()
+                    setPrimeDealProducts(prime_deals)
+                    setApiStatus(apiStatusConstants.success)
+                }
+                if (response.status === 401) {
+                    setApiStatus(apiStatusConstants.failure)
+                }
+            } catch (e) {
+                console.error(e.message)
                 setApiStatus(apiStatusConstants.failure)
             }
         }
