@@ -1,16 +1,16 @@
 import styled from "styled-components"
 import { FaLessThan, FaGreaterThan } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
-
+import { RiCloseCircleFill } from "react-icons/ri";
 import { MobilebreakPoints, DesktopBreakpoints } from "../../Breakpoints/breakpoints"
 
 export const Container = styled.li`
+position: relative;
     display: flex;
     gap: 1.5rem; 
     border-radius: 0.5rem;
     box-shadow: 0px 0.1px 4px 0px #bfbfbf;  
     padding: 1rem 0.4rem;
-    
     @media(min-width: ${MobilebreakPoints.small}){
         padding: 1rem 0.5rem;
     }
@@ -62,7 +62,7 @@ export const IncreaseQuanity = styled(FaGreaterThan)`
 `
 export const QuantityTitle = styled.span`
     color: #12022f;
-    font-size:0.9rem;
+    font-size:0.77rem;
     @media(min-width: ${MobilebreakPoints.small}){
         font-size: 1.2rem;
     }
@@ -100,10 +100,10 @@ export const CartProductTitle = styled.span`
     font-size:0.9rem;
     font-weight: 600;
     @media(min-width: ${MobilebreakPoints.small}){
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
     @media(min-width: ${MobilebreakPoints.medium}){
-        font-size: 1.4rem
+        font-size: 1.1rem
     }
    
 `
@@ -114,7 +114,7 @@ export const CartProductBrand = styled.span`
         font-size: 0.8rem
     }
     @media(min-width: ${MobilebreakPoints.medium}){
-        font-size: 01rem
+        font-size: 0.9rem
     }
    
 `
@@ -142,9 +142,7 @@ export const StarIcon = styled(FaStar)`
     @media(min-width: ${MobilebreakPoints.small}){
         font-size: 1rem
     }
-    @media(min-width: ${MobilebreakPoints.medium}){
-        font-size: 01.1rem
-    }
+    
 `
 
 export const CartProductRating = styled.span`
@@ -153,9 +151,7 @@ export const CartProductRating = styled.span`
     @media(min-width: ${MobilebreakPoints.small}){
         font-size: 1.1rem
     }
-    @media(min-width: ${MobilebreakPoints.medium}){
-        font-size: 01.2rem
-    }
+    
     
 `
 
@@ -179,11 +175,9 @@ export const CartProductPrice = styled.span`
     color: #12022f;
     font-size:0.9rem;
     @media(min-width: ${MobilebreakPoints.small}){
-        font-size: 1.2rem
+        font-size: 1.1rem
     }
-    @media(min-width: ${MobilebreakPoints.medium}){
-        font-size: 01.3rem
-    }
+    
    
 `
 
@@ -201,4 +195,17 @@ export const TotalPriceOfEachItem = styled.span`
        font-size: 1.1rem;
        margin: 0;
     }
+`
+
+export const CloseIcon = styled(RiCloseCircleFill)`
+    font-size: 1rem;
+    color: #171f46;
+    position: absolute;
+    right: 1.8rem;
+    cursor: pointer;
+    @media(min-width: ${MobilebreakPoints.small}){
+        font-size: 1.6rem;
+
+    }
+   
 `

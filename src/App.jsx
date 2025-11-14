@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import LayOut from "./components/LayOut/layout-component";
 import Home from "./components/Home/home-component";
@@ -13,9 +14,14 @@ import ProductItemDetails from "./components/Productitemdetails/productitemdetai
 const App = () => {
     return (
         <>
+            <Toaster position="top-center" reverseOrder="false" />
             <GlobalStyle />
             <Routes>
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={
+                    <PublicRoute>
+                        <Login />
+                    </PublicRoute>
+                } />
                 <Route path="/" element={
                     <ProtectedRoute>
                         <LayOut />

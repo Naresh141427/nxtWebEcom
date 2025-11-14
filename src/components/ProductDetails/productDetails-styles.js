@@ -32,6 +32,11 @@ export const ProductDetailsContainer = styled.div`
 export const TopSection = styled.div`
     display: flex;
     flex-direction: column;
+    @media(min-width: ${MobilebreakPoints.large}){
+      flex-direction: row;
+      align-items: center;
+      gap: 3rem;
+    }
 `
 export const BottomSection = styled.div`
     display: flex;
@@ -42,11 +47,12 @@ export const ProductImageContainer = styled.div`
   @media (min-width: ${MobilebreakPoints.extraSmall}){
     display: flex;
     flex-direction: column;
+    height: 100%;
     
   }
  
   @media (min-width: ${MobilebreakPoints.large}){
-    width: 40%;
+    align-items: space-around;
   }
 
 `
@@ -61,27 +67,20 @@ export const ProductImage = styled.img`
   }
   
   @media (min-width: ${MobilebreakPoints.large}){
-    height: 80%;
-    max-height: 24rem;
     margin-bottom: 1.3rem;
   }
-   @media (min-width: ${DesktopBreakpoints.large}){
-        height: 100%;
-        width: 100%;
-
-   }
 
 `
 export const ProductDescriptionContainer = styled.div`
 @media (min-width: ${MobilebreakPoints.small}){
      display: flex;
     flex-direction: column;
-    max-width:70%;
+    ${'' /* max-width:70%; */}
 
 }
 
   @media (min-width: ${MobilebreakPoints.large}){
-    width: 60%;
+    ${'' /* width: 60%; */}
     max-width: 20rem;
   }
 

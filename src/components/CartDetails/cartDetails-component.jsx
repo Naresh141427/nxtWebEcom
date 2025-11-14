@@ -1,5 +1,6 @@
 import { useCart } from "../../Context/CartContext.jsx"
 
+
 import {
     Container,
     ProductImageContainer,
@@ -20,13 +21,23 @@ import {
     CartProductReviewContainer,
     CartProductDetailsTopContainer,
     CartPriceContainer,
-    TotalPriceOfEachItem
+    TotalPriceOfEachItem,
+    CloseIcon
 
 } from "./cartDetails-styles.js"
+import { showErrorToast } from "../../Utils/toastUtils.js"
 
 const CartDetails = ({ cartItem }) => {
-    const { decreaseItemsQuantity, inceraseItemsQuantity } = useCart()
+    const { decreaseItemsQuantity, addItemsToTheCart, filterCartItems } = useCart()
     const { title, price, image_url, rating, total_reviews, brand, quantity } = cartItem
+
+    const handleRemoveItem = () => {
+        filterCartItems(cartItem)
+        showErrorToast("Item Removed from cart", 500)
+
+    }
+
+
     return (
         <Container>
             <ProductImageContainer>
@@ -34,7 +45,7 @@ const CartDetails = ({ cartItem }) => {
                 <QuantityControlContainer>
                     <DecreaseQuanity onClick={() => decreaseItemsQuantity(cartItem)} />
                     <QuantityTitle>Qty: {quantity}</QuantityTitle>
-                    <IncreaseQuanity onClick={() => inceraseItemsQuantity(cartItem)} />
+                    <IncreaseQuanity onClick={() => addItemsToTheCart(cartItem)} />
                 </QuantityControlContainer>
             </ProductImageContainer>
             <CartProductDetailsContainer>
@@ -54,9 +65,9 @@ const CartDetails = ({ cartItem }) => {
                 <CartPriceContainer>
                     <CartProductPrice>Price: {price}/-</CartProductPrice>
                 </CartPriceContainer>
-                <TotalPriceOfEachItem>Total Price: {price * quantity}/-</TotalPriceOfEachItem>
+                <TotalPriceOfEachItem>Total Price: Rs. {price * quantity}/-</TotalPriceOfEachItem>
             </CartProductDetailsContainer>
-
+            <CloseIcon onClick={handleRemoveItem} />
         </Container>
     )
 }

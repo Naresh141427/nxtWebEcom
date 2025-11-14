@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom"
-import styled from "styled-components";
-
+import styled, { keyframes } from "styled-components";
 import { MobilebreakPoints, DesktopBreakpoints } from "../../Breakpoints/breakpoints";
+
+const bounce = keyframes`
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(0.9); }
+  75% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+`;
 
 export const NavHeader = styled.header`
   @media(min-width: ${MobilebreakPoints.extraSmall}){
@@ -10,6 +17,10 @@ export const NavHeader = styled.header`
     gap: 0.6rem;
     background-color: #fff;
     box-shadow: 0px 0.1px 4px 0px #bfbfbf;
+    ${'' /* position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff; */}
   }
   
   @media(min-width: ${MobilebreakPoints.large}){
@@ -18,6 +29,7 @@ export const NavHeader = styled.header`
   @media(min-width: ${DesktopBreakpoints.medium}){
     padding: 0.5rem 10rem;
   }
+  
 `
 export const NavbarLogo = styled.img`
   
@@ -80,6 +92,9 @@ export const MobileIcon = styled.img`
       border-radius: 0;
       opacity: 1;
   }
+  &.bounce {
+  animation: ${bounce} 0.35s ease-out;
+}
 `
 export const MobileNavMenu = styled.ul`
   
@@ -138,6 +153,10 @@ export const NavMenuLinks = styled(Link)`
     font-size: 1.3rem;
 
   }
+  &.bounce {
+  animation: ${bounce} 0.35s ease-out;
+}
+
 `
 
 export const NavButton = styled.button`
@@ -152,4 +171,12 @@ export const NavButton = styled.button`
     cursor: pointer;
     padding: 0.5rem 1.3rem;
 }
+`
+
+export const CartTotalItems = styled.span`
+  color: #0967d2;
+  border-radius: 50%;
+  padding: 2px 5px;
+  background-color: #e6f6ff;
+
 `

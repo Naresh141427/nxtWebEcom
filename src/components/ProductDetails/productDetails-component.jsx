@@ -1,6 +1,7 @@
 
 import SimilarProducts from "../SimilarProducts/similarProducts-component.jsx"
 import { useCart } from "../../Context/CartContext.jsx"
+
 import {
     ProductImageContainer,
     ProductImage,
@@ -28,6 +29,7 @@ import {
 
 } from "./productDetails-styles.js"
 import { useState } from "react"
+import { showSuccessToast } from "../../Utils/toastUtils.js"
 
 const ProductDetails = ({ productDetailsObject }) => {
     const { addItemsToTheCart } = useCart()
@@ -37,13 +39,18 @@ const ProductDetails = ({ productDetailsObject }) => {
 
     const handleAddingItemsToCart = () => {
         addItemsToTheCart(productInfo, productQuantity)
+        showSuccessToast("Item Added to cart", 500);
+
+
 
     }
     const handleItemQuantityIncrease = () => {
         setProductQuantity(prevQunity => prevQunity + 1)
+
     }
     const handleItemQuantityDecrease = () => {
         if (productQuantity > 1) setProductQuantity(prevQunity => prevQunity - 1)
+
     }
     return (
         <ProductDetailsContainer>
@@ -70,9 +77,9 @@ const ProductDetails = ({ productDetailsObject }) => {
                     <HorizontalRule />
                     <AddTOCartContainer>
                         <QuantityControlContainer>
-                            <IncreaseQuanity onClick={handleItemQuantityIncrease} />
-                            <Quantity>{productQuantity}</Quantity>
                             <DecreaseQuantity onClick={handleItemQuantityDecrease} />
+                            <Quantity>{productQuantity}</Quantity>
+                            <IncreaseQuanity onClick={handleItemQuantityIncrease} />
                         </QuantityControlContainer>
                         <AddToCartButton onClick={handleAddingItemsToCart}>
                             ADD TO CART

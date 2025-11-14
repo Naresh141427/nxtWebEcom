@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Cookies from "js-cookie";
 import { useAuth } from "../../Context/AuthContext";
+
+
 
 import {
     LoginContainer,
@@ -28,7 +29,6 @@ const Login = () => {
     });
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [sucessMessage, setSuccessMessage] = useState("")
 
     const [logoImageLoaded, setLogoImageLoaded] = useState(false);
     const [loginImageLoaded, setLoginImageLoaded] = useState(false);
@@ -63,7 +63,7 @@ const Login = () => {
 
             if (response.ok) {
                 const { jwt_token: jwtToken } = data
-                setSuccessMessage("Login successful! Redirecting...");
+
                 logIn(jwtToken)
                 navigate(redirectPath, { replace: true })
             } else {
@@ -129,7 +129,6 @@ const Login = () => {
                         {loading ? "Loading..." : "Login"}
                     </LoginButton>
                     {errorMessage && <ErrorMessage>*{errorMessage}</ErrorMessage>}
-                    {sucessMessage && <SuccessMessage>{sucessMessage}</SuccessMessage>}
                 </LoginFormContainer>
             </LoginContainer>
         </LoginComponentContainer>

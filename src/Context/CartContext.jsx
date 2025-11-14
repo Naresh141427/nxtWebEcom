@@ -2,19 +2,29 @@ import React, { useContext, useMemo, useState } from "react"
 
 
 const CartContext = React.createContext({
+    isBouncing: false,
+    triggerBounce: () => { },
     cartItems: [],
     addItemsToTheCart: () => { },
     decreaseItemsQuantity: () => { },
+    filterCartItems: () => { },
     cartTotal: 0
 })
 
 
 export const CartContextProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([])
+    const [isBouncing, setIsBouncing] = useState(false)
 
     const cartTotal = useMemo(() => {
         return cartItems.reduce((acc, currentItem) => acc + (currentItem.price * currentItem.quantity), 0)
     }, [cartItems])
+
+    const triggerBounce = () => {
+        setIsBouncing(true)
+        setTimeout(() => setIsBouncing(false), 300)
+    }
+
     const addItemsToTheCart = (item, quantityToAdd = 1) => {
         const isItemInCart = cartItems.some(cartItem => cartItem.id === item.id);
 
@@ -29,6 +39,7 @@ export const CartContextProvider = ({ children }) => {
         } else {
             setCartItems(prevItems => [...prevItems, { ...item, quantity: quantityToAdd }]);
         }
+        triggerBounce()
     }
 
     const decreaseItemsQuantity = (item) => {
@@ -43,10 +54,17 @@ export const CartContextProvider = ({ children }) => {
         }
     }
 
+    const filterCartItems = item => {
+        setCartItems(prevCartItems =>
+            prevCartItems.filter(cartItem =>
+                cartItem.id !== item.id
+            )
+        )
+    }
 
 
     return (
-        <CartContext.Provider value={{ cartItems, addItemsToTheCart, decreaseItemsQuantity, cartTotal }}>
+        <CartContext.Provider value={{ cartItems, addItemsToTheCart, decreaseItemsQuantity, cartTotal, filterCartItems, isBouncing }}>
             {children}
         </CartContext.Provider>
     )

@@ -46,16 +46,14 @@ export const EmptyCartcontainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 20vh;
   gap: 0.7rem;
-  @media(min-width: ${MobilebreakPoints.small}){
-    height: 30vh;
-  }
+  margin-top: 3rem;
 `
 
 export const EmptyCartHeader = styled.h1`
   color: #0f172a;
   font-size: 1rem;
+  margin: 0;
   @media(min-width: ${MobilebreakPoints.small}){
     font-size: 1.1rem;
   }
@@ -63,7 +61,15 @@ export const EmptyCartHeader = styled.h1`
     font-size: 1.3rem;
   }
 `
-
+export const EmptyCartDescription = styled.p`
+  color:  rgba(8, 8, 8, 0.83);
+  font-size: 1rem;
+  margin: 0;  
+  text-align: center;
+  @media (min-width: ${MobilebreakPoints.small}){
+      font-size: 1.1rem
+  }
+`
 export const ShopNowButton = styled.button`
     @media (min-width: ${MobilebreakPoints.extraSmall}){
         display: inline-block;
@@ -102,3 +108,7 @@ export const CartTotalHeading = styled.h1`
     font-size: 1.3rem;
   }
 `
+export const EmptyCartImage = styled.img`
+    height: 200px;
+    width: auto;
+  `

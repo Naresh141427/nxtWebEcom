@@ -4,7 +4,17 @@ import './cart-styles.js';
 import CartDetails from '../CartDetails/cartDetails-component.jsx';
 
 
-import { Container, CartContainer, SummaryTitle, EmptyCartcontainer, EmptyCartHeader, ShopNowButton, CartTotalHeading } from "./cart-styles.js"
+import {
+    Container,
+    CartContainer,
+    SummaryTitle,
+    EmptyCartcontainer,
+    EmptyCartHeader,
+    ShopNowButton,
+    CartTotalHeading,
+    EmptyCartDescription,
+    EmptyCartImage
+} from "./cart-styles.js"
 
 
 const Cart = () => {
@@ -26,12 +36,18 @@ const Cart = () => {
                                 <CartDetails key={cartItem.id} cartItem={cartItem} />
                             )
                         })}
-                        <CartTotalHeading>Total Amount: {cartTotal}/-</CartTotalHeading>
+                        <CartTotalHeading>Order Total: Rs.{cartTotal}/-</CartTotalHeading>
                     </CartContainer>
                 ) :
                     (
                         <EmptyCartcontainer>
+                            <EmptyCartImage
+                                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-empty-cart-img.png"
+                                alt="empty cart image"
+
+                            />
                             <EmptyCartHeader>Your Cart Is Empty</EmptyCartHeader>
+                            <EmptyCartDescription>Add items to your cart to see them here"</EmptyCartDescription>
                             <ShopNowButton onClick={handleShopNowButton}>Shop Now</ShopNowButton>
                         </EmptyCartcontainer>
                     )

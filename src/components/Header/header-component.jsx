@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../Context/AuthContext"
+import { useCart } from "../../Context/CartContext"
+import toast from "react-hot-toast"
 
 import {
     NavHeader,
@@ -11,11 +13,13 @@ import {
     MobileNavLink,
     MobileIcon,
     MobileNavMenu,
-    NavButton
+    NavButton,
+    CartTotalItems
 } from "./header-styles"
 import { useState } from "react"
 
 const Header = () => {
+    const { cartItems, isBouncing } = useCart()
     const { logOut } = useAuth()
     const [navBarLogoLoaded, setNavBarLogoLoaded] = useState(false)
     const [navBarLogOutLoaded, setNavBarLogOutLoaded] = useState(false)
@@ -47,7 +51,7 @@ const Header = () => {
                 <NavMenu>
                     <NavMenuLinks to="/">Home</NavMenuLinks>
                     <NavMenuLinks to="/products">Products</NavMenuLinks>
-                    <NavMenuLinks to="/cart">Cart</NavMenuLinks>
+                    <NavMenuLinks to="/cart" className={`isBouncing ? "bounce" : ""`}>Cart <CartTotalItems>{cartItems.length}</CartTotalItems></NavMenuLinks>
                     <NavButton onClick={handleMobileLogOut}>LogOut</NavButton>
                 </NavMenu>
             </Navbar>
@@ -62,6 +66,7 @@ const Header = () => {
                     height="32px"
                     className={navBarLogoLoaded ? "loaded" : ""}
                     onLoad={() => setNavBarLogoLoaded(true)}
+                    onClick={() => handleNavLogoClick}
 
                 />
                 <MobileIcon
@@ -106,7 +111,7 @@ const Header = () => {
                         loading="lazy"
                         height="32px"
                         width="32px"
-                        className={cartIconLoaded ? "loaded" : ""}
+                        className={`${cartIconLoaded ? "loaded" : ""} ${isBouncing ? "bounce" : ""}`}
                         onLoad={() => setCartIconLoaded(true)}
 
                     />

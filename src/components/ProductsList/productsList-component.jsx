@@ -71,8 +71,9 @@ const ProductsList = () => {
 
     const sortProducts = (value) => {
         setSearchParams(prevParams => {
-            prevParams.set('sort_by', value)
-            return prevParams
+            const params = new URLSearchParams(prevParams)
+            params.set('sort_by', value)
+            return params
         })
     }
 
@@ -84,8 +85,9 @@ const ProductsList = () => {
     }
     const handleRatingChange = (value) => {
         setSearchParams(prevParams => {
-            prevParams.set('rating', value)
-            return prevParams
+            const params = new URLSearchParams(prevParams)
+            params.set('rating', value)
+            return params
         })
 
     }
