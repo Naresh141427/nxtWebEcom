@@ -15,7 +15,7 @@ import {
     NavButton,
     CartTotalItems
 } from "./header-styles"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const Header = () => {
     const { cartItems, isBouncing } = useCart()
@@ -26,6 +26,8 @@ const Header = () => {
     const [productsIconLoaded, setProductsIconLoaded] = useState(false)
     const [cartIconLoaded, setCartIconLoaded] = useState(false)
     const navigate = useNavigate()
+    const [isScrolled, setIsScrolled] = useState(false)
+    const SCROLL_THRESHOLD = 100;
 
     const cartLength = cartItems.length
     const handleMobileLogOut = () => {
@@ -36,8 +38,24 @@ const Header = () => {
     const handleNavLogoClick = () => {
         navigate("/")
     }
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > SCROLL_THRESHOLD) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     return (
-        <NavHeader>
+        <NavHeader className={isScrolled ? "sticky-header" : ""}>
             <Navbar>
                 <NavbarLogo
                     src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-logo-img.png"

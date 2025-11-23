@@ -10,27 +10,44 @@ const bounce = keyframes`
   100% { transform: scale(1); }
 `;
 
+
+
 export const NavHeader = styled.header`
-  @media(min-width: ${MobilebreakPoints.extraSmall}){
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    background-color: #fff;
-    box-shadow: 0px 0.1px 4px 0px #bfbfbf;
-    ${'' /* position: sticky;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease-in-out, padding 0.3s ease-in-out; 
+  box-shadow: 0px 0.1px 4px 0px #bfbfbf;
+
+  &.sticky-header {
+    position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #fff; */}
+  
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); 
+
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
+
+
+  
   
   @media(min-width: ${MobilebreakPoints.large}){
     padding: 0 3rem;
   }
   @media(min-width: ${DesktopBreakpoints.medium}){
     padding: 0.5rem 10rem;
+    
+    &.sticky-header {
+      padding: 0.3rem 10rem; 
+    }
   }
-  
-`
+`;
+
+
+
 export const NavbarLogo = styled.img`
   
   background-color: #d7dfe9;
