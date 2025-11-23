@@ -31,13 +31,17 @@ import {
 import { showErrorToast } from "../../Utils/toastUtils.js"
 
 const CartDetails = ({ cartItem }) => {
-    const { decreaseItemsQuantity, addItemsToTheCart, filterCartItems } = useCart()
+    const { decreaseItemsQuantity, addItemsToTheCart, filterCartItems, triggerBounce } = useCart()
     const { title, price, image_url, rating, total_reviews, brand, quantity } = cartItem
 
     const handleRemoveItem = () => {
         filterCartItems(cartItem)
         showErrorToast("Item Removed from cart", 500)
 
+    }
+    const handleAddingItemsTOTheCart = () => {
+        addItemsToTheCart(cartItem)
+        triggerBounce()
     }
 
 
@@ -46,11 +50,9 @@ const CartDetails = ({ cartItem }) => {
             <ProductImageContainer>
                 <ProductImage src={image_url} alt={title} />
                 <QuantityControlContainer>
-                    {/* <DecreaseQuanity onClick={() => decreaseItemsQuantity(cartItem)} /> */}
                     <QuantityContainer> <DecreaseQuantity onClick={() => decreaseItemsQuantity(cartItem)} /> </QuantityContainer>
                     <QuantityTitle>Qty: {quantity}</QuantityTitle>
-                    <QuantityContainer> <IncreaseQuanity onClick={() => addItemsToTheCart(cartItem)} /></QuantityContainer>
-                    {/* <IncreaseQuanity onClick={() => addItemsToTheCart(cartItem)} /> */}
+                    <QuantityContainer> <IncreaseQuanity onClick={handleAddingItemsTOTheCart} /></QuantityContainer>
                 </QuantityControlContainer>
             </ProductImageContainer>
             <CartProductDetailsContainer>

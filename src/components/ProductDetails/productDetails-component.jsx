@@ -37,7 +37,7 @@ import SimilarProducts from "../SimilarProducts/similarProducts-component.jsx"
 const ProductDetails = ({ productDetailsObject }) => {
     const navigate = useNavigate()
 
-    const { addItemsToTheCart, cartItems } = useCart()
+    const { addItemsToTheCart, cartItems, triggerBounce } = useCart()
     const [productQuantity, setProductQuantity] = useState(1)
     const { similar_products: similarProducts, ...productInfo } = productDetailsObject
     const { id, title, price, image_url, rating, total_reviews, description, availability, brand } = productInfo
@@ -50,6 +50,7 @@ const ProductDetails = ({ productDetailsObject }) => {
         else {
             addItemsToTheCart(productInfo, productQuantity)
             showSuccessToast("Item Added to cart", 500);
+            triggerBounce()
         }
 
     }
