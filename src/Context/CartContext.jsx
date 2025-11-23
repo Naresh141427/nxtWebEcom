@@ -1,13 +1,7 @@
 import React, { useContext, useMemo, useReducer } from "react"
 
 
-const CartContext = React.createContext({
-    isBouncing: false,
-    cartItems: [],
-    addItemsToTheCart: () => { },
-    decreaseItemsQuantity: () => { },
-    filterCartItems: () => { },
-})
+const CartContext = React.createContext(undefined)
 
 const CART_ACTION_TYPES = {
     isBouncing: "IS_BOUNCING",
@@ -115,4 +109,9 @@ export const CartContextProvider = ({ children }) => {
     )
 }
 
-export const useCart = () => useContext(CartContext)
+export const useCart = () => {
+    const context = useContext(CartContext)
+
+    if (context === undefined) throw new Error("useCart must be used within an AuthProvider")
+    return context
+}
